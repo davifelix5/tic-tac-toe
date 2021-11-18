@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Jogo Da Velha</string>
+    <string name="app_name">Tic-Tac-Toe</string>
     <string name="player_label">Agora é a vez de: %1$s</string>
 </resources>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class JogadorVsJogador extends AppCompatActivity {
 
     Jogadores jogador;
     int jogadas = 0;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private AlertDialog.Builder makeDialog(String title, String message) {
-        AlertDialog.Builder model = new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder model = new AlertDialog.Builder(JogadorVsJogador.this);
         model.setTitle(title);
         model.setMessage(message);
         model.setPositiveButton("OK", (dialogInterface, i) -> reset());
