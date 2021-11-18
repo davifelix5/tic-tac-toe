@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -103,7 +104,19 @@ public class MainActivity extends AppCompatActivity {
             setJogador(Jogadores.X);
         } else {
             setJogador(Jogadores.O);
+            computerPlays();
         }
+    }
+
+    private void computerPlays() {
+        Random random = new Random();
+        Button randomButton;
+        do {
+            int line = random.nextInt(3);
+            int column = random.nextInt(3);
+            randomButton = getButtons().get(line).get(column);
+        } while (!randomButton.isClickable());
+        randomButton.callOnClick();
     }
 
     private void initialize() {
