@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class JogadorVsJogador extends AppCompatActivity {
 
@@ -30,8 +31,7 @@ public class JogadorVsJogador extends AppCompatActivity {
         initialize();
 
         getButtons().forEach(line -> line.forEach(button -> button.setOnClickListener(view -> {
-            button.setText(jogador.toString());
-            button.setClickable(false);
+            UserPlays(button);
             setJogadas(jogadas + 1);
             if (isWinner()) {
                 makeDialog("Fim de jogo!", "O jogador " + getJogador().toString() + " ganhou!").show();
@@ -45,6 +45,35 @@ public class JogadorVsJogador extends AppCompatActivity {
 
         getBtnReset().setOnClickListener(view -> reset());
 
+    }
+
+    private void computerPlays() {
+        Button btn;
+        Random random = new Random();
+        do {
+            int line = random.nextInt(3);
+            int column = random.nextInt(3);
+            btn = getButtons().get(line).get(column);
+        } while (!btn.isClickable());
+        btn.callOnClick();
+    }
+
+    private void UserPlays(Button button) {
+        button.setText(jogador.toString());
+        button.setClickable(false);
+    }
+
+    private void changeJogador() {
+        if (getJogador() == Jogadores.O) {
+            setJogador(Jogadores.X);
+        } else {
+            setJogador(Jogadores.O);
+            computerPlays();
+        }
+    }
+
+    private void changePlayerLabelText() {
+        getJogadorLabel().setText(getString(R.string.player_label, jogador.toString()));
     }
 
     private AlertDialog.Builder makeDialog(String title, String message) {
@@ -98,22 +127,10 @@ public class JogadorVsJogador extends AppCompatActivity {
         return getButtonText(btn1).equals(getButtonText(btn2)) && getButtonText(btn1).equals(getButtonText(btn3));
     }
 
-    private void changeJogador() {
-        if (getJogador() == Jogadores.O) {
-            setJogador(Jogadores.X);
-        } else {
-            setJogador(Jogadores.O);
-        }
-    }
-
     private void initialize() {
         linkButtons();
         setJogador(Jogadores.X);
         changePlayerLabelText();
-    }
-
-    private void changePlayerLabelText() {
-        getJogadorLabel().setText(getString(R.string.player_label, jogador.toString()));
     }
 
     private Button findButton(int i, int j) {
