@@ -6,4 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
+<<<<<<< HEAD
+=======
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Escolha um modo de jogo"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/playModeGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <RadioButton
+            android:id="@+id/singleplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contra o computador"
+            tools:layout_editor_absoluteX="183dp"
+            tools:layout_editor_absoluteY="168dp"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/multiplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 jogadores"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="168dp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/playBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Jogar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playModeGroup" />
+>>>>>>> b56f908322e2c08b155d67e4ed0dffc9f6436515
 </androidx.constraintlayout.widget.ConstraintLayout>

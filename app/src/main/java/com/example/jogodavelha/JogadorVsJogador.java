@@ -3,6 +3,7 @@ package com.example.jogodavelha;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +17,10 @@ public class JogadorVsJogador extends AppCompatActivity {
     Jogadores jogador;
     int jogadas = 0;
 
+
     List<List<Button>> buttons = new ArrayList<>();
-    Button btnReset;
+    Button btnReset, btnChangeMode;
+    String mode;
     TextView jogadorLabel;
 
     @Override
@@ -25,8 +28,11 @@ public class JogadorVsJogador extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setMode(getIntent().getExtras().get("mode").toString());
+
         setJogadorLabel(findViewById(R.id.txtPlayer));
         setBtnReset(findViewById(R.id.btnReset));
+        setBtnChangeMode(findViewById(R.id.btnChangeMode));
 
         initialize();
 
@@ -39,12 +45,24 @@ public class JogadorVsJogador extends AppCompatActivity {
                 makeDialog("Empate!", "Nenhum jogador ganhou").show();
             } else {
                 changeJogador();
+                if (getJogador() == Jogadores.O && getMode().equals(Modes.SINGLEPLAYER.toString())) {
+                    computerPlays();
+                }
                 changePlayerLabelText();
             }
         })));
 
         getBtnReset().setOnClickListener(view -> reset());
+        getBtnChangeMode().setOnClickListener(view -> goToMenu());
 
+    }
+
+    private void goToMenu() {
+        Intent it = new Intent(MainActivity.this, Menu.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(it);
+        finish();
     }
 
     private void computerPlays() {
@@ -127,6 +145,28 @@ public class JogadorVsJogador extends AppCompatActivity {
         return getButtonText(btn1).equals(getButtonText(btn2)) && getButtonText(btn1).equals(getButtonText(btn3));
     }
 
+<<<<<<< HEAD:app/src/main/java/com/example/jogodavelha/JogadorVsJogador.java
+=======
+    private void changeJogador() {
+        if (getJogador() == Jogadores.O) {
+            setJogador(Jogadores.X);
+        } else {
+            setJogador(Jogadores.O);
+        }
+    }
+
+    private void computerPlays() {
+        Random random = new Random();
+        Button randomButton;
+        do {
+            int line = random.nextInt(3);
+            int column = random.nextInt(3);
+            randomButton = getButtons().get(line).get(column);
+        } while (!randomButton.isClickable());
+        randomButton.callOnClick();
+    }
+
+>>>>>>> b56f908322e2c08b155d67e4ed0dffc9f6436515:app/src/main/java/com/example/jogodavelha/MainActivity.java
     private void initialize() {
         linkButtons();
         setJogador(Jogadores.X);
@@ -192,5 +232,21 @@ public class JogadorVsJogador extends AppCompatActivity {
 
     public void setJogadas(int jogadas) {
         this.jogadas = jogadas;
+    }
+
+    public Button getBtnChangeMode() {
+        return btnChangeMode;
+    }
+
+    public void setBtnChangeMode(Button btnChangeMode) {
+        this.btnChangeMode = btnChangeMode;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 }
