@@ -3,6 +3,7 @@ package com.example.jogodavelha;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,8 +17,10 @@ public class MainActivity extends AppCompatActivity {
     Jogadores jogador;
     int jogadas = 0;
 
+
     List<List<Button>> buttons = new ArrayList<>();
-    Button btnReset;
+    Button btnReset, btnChangeMode;
+    String mode;
     TextView jogadorLabel;
 
     @Override
@@ -25,8 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setMode(getIntent().getExtras().get("mode").toString());
+
         setJogadorLabel(findViewById(R.id.txtPlayer));
         setBtnReset(findViewById(R.id.btnReset));
+        setBtnChangeMode(findViewById(R.id.btnChangeMode));
 
         initialize();
 
@@ -40,12 +46,22 @@ public class MainActivity extends AppCompatActivity {
                 makeDialog("Empate!", "Nenhum jogador ganhou").show();
             } else {
                 changeJogador();
+                if (getJogador() == Jogadores.O && getMode().equals(Modes.SINGLEPLAYER.toString())) {
+                    computerPlays();
+                }
                 changePlayerLabelText();
             }
         })));
 
         getBtnReset().setOnClickListener(view -> reset());
+        getBtnChangeMode().setOnClickListener(view -> goToMenu());
 
+    }
+
+    private void goToMenu() {
+        Intent it = new Intent(MainActivity.this, Menu.class);
+        startActivity(it);
+        finish();
     }
 
     private AlertDialog.Builder makeDialog(String title, String message) {
@@ -104,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
             setJogador(Jogadores.X);
         } else {
             setJogador(Jogadores.O);
-            computerPlays();
         }
     }
 
@@ -188,5 +203,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void setJogadas(int jogadas) {
         this.jogadas = jogadas;
+    }
+
+    public Button getBtnChangeMode() {
+        return btnChangeMode;
+    }
+
+    public void setBtnChangeMode(Button btnChangeMode) {
+        this.btnChangeMode = btnChangeMode;
+    }
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 }
