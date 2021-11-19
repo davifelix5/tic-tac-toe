@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToMenu() {
         Intent it = new Intent(MainActivity.this, Menu.class);
+        it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(it);
         finish();
     }
