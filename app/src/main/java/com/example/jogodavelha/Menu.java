@@ -15,6 +15,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        getSupportActionBar().hide();
 
         Button playBtn = findViewById(R.id.playBtn);
         playModeGroup = findViewById(R.id.playModeGroup);
