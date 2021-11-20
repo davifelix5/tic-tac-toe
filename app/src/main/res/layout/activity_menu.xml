@@ -6,41 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".Menu">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Escolha um modo de jogo"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <RadioGroup
         android:id="@+id/playModeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        tools:layout_editor_absoluteY="451dp">
 
         <RadioButton
             android:id="@+id/singleplayer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="197dp"
+            android:layout_height="80dp"
+            android:buttonTint="#000000"
+            android:checked="true"
+            android:fontFamily="@font/secular_one"
             android:text="Contra o computador"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="183dp"
-            tools:layout_editor_absoluteY="168dp"
-            android:checked="true" />
+            tools:layout_editor_absoluteY="168dp" />
 
         <RadioButton
             android:id="@+id/multiplayer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="#000000"
+            android:fontFamily="@font/secular_one"
             android:text="2 jogadores"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textSize="20sp"
             tools:layout_editor_absoluteX="77dp"
             tools:layout_editor_absoluteY="168dp" />
 
@@ -48,11 +44,36 @@
 
     <Button
         android:id="@+id/playBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="201dp"
+        android:layout_height="66dp"
+        android:backgroundTint="#000000"
         android:text="Jogar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playModeGroup" />
+        tools:layout_editor_absoluteY="604dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="395dp"
+        android:layout_height="355dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/Menu_screen" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/secular_one"
+        android:text="Escolha um modo de jogo"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="397dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
